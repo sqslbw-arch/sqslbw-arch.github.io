@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Civion Trust</title>
+  <meta
+    name="description"
+    content="The Civion Trust whitepaper explains the protocol thesis, trust architecture, access model, and CIV token role behind its Web3 coordination layer."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@600;700&display=swap"
+    rel="stylesheet"
+  >
+  <script>
+    document.documentElement.classList.add("js");
+  </script>
+  <link rel="icon" type="image/png" href="assets/logo-source.png">
+  <link rel="shortcut icon" href="assets/logo-source.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="whitepaper-docs.css">
+</head>
+<body class="page-paper page-paper-docs">
+  <div class="progress-bar" aria-hidden="true">
+    <span class="progress-value"></span>
+  </div>
+
+  <div class="paper-docs-app">
+    <header class="paper-docs-topbar">
+      <div class="paper-docs-topbar-shell">
+        <a class="paper-docs-brand" href="#top" aria-label="Civion Trust whitepaper">
+          <span class="paper-docs-brand-mark" aria-hidden="true"></span>
+          <span class="paper-docs-brand-copy">
+            <strong>Civion Trust</strong>
+            <span>Whitepaper</span>
+          </span>
+        </a>
+
+        <div class="paper-docs-topbar-actions">
+          <div class="paper-docs-socials" aria-label="Social links">
+            <a
+              class="paper-docs-social-link"
+              href="https://x.com/your_handle"
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Civion Trust on X"
+            >
+              <svg viewBox="0 0 512 512" aria-hidden="true">
+                <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.2 26.8 48H172L272.9 180.9 389.2 48zm-24.8 373.8h39.1L150.4 88h-42L364.4 421.8z"></path>
+              </svg>
+              <span class="sr-only">X</span>
+            </a>
+            <a
+              class="paper-docs-social-link"
+              href="https://t.me/your_channel"
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Civion Trust on Telegram"
+            >
+              <svg viewBox="0 0 496 512" aria-hidden="true">
+                <path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm115 171.8-35.8 168.8c-2.7 12.1-9.7 15.1-19.7 9.4L253 318l-26.3 25.3c-2.9 2.9-5.3 5.3-10.9 5.3l3.9-55.8 101.6-91.8c4.4-3.9-1-6.1-6.8-2.2l-125.6 79.1-54.1-16.9c-11.8-3.7-12-11.8 2.4-17.4l211.1-81.4c9.5-3.7 17.9 2.2 14.8 17.6z"></path>
+              </svg>
+              <span class="sr-only">Telegram</span>
+            </a>
+          </div>
+          <a class="paper-docs-icon-link" href="index.html" aria-label="Back to homepage">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 5.5 4.5 12H6v6.5h4.75V14h2.5v4.5H18V12h1.5L12 5.5Z"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="paper-docs-shell" id="top">
+      <aside class="paper-docs-sidebar">
+        <nav class="paper-docs-sidebar-scroll" aria-label="Whitepaper navigation">
+            <a class="paper-docs-sidebar-home" href="index.html">Homepage</a>
+
+          <section class="paper-docs-nav-section is-active" data-doc-nav-section="introduction">
+            <button
+              class="paper-docs-section-trigger is-active"
+              type="button"
+              data-doc-page-trigger="introduction"
+              aria-controls="doc-page-introduction"
+              aria-selected="true"
+            >
+              Introduction
+            </button>
+            <div class="paper-docs-topic-list">
+              <button class="paper-docs-topic-link is-active" type="button" data-doc-page-target="introduction" data-doc-section-target="intro-overview">Overview</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="introduction" data-doc-section-target="intro-positioning">Positioning</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="introduction" data-doc-section-target="intro-thesis">Protocol Thesis</button>
+            </div>
+          </section>
+
+          <section class="paper-docs-nav-section" data-doc-nav-section="protocol">
+            <button
+              class="paper-docs-section-trigger"
+              type="button"
+              data-doc-page-trigger="protocol"
+              aria-controls="doc-page-protocol"
+              aria-selected="false"
+            >
+              Protocol
+            </button>
+            <div class="paper-docs-topic-list">
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="protocol" data-doc-section-target="protocol-gap">Trust Gap</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="protocol" data-doc-section-target="protocol-architecture">Architecture</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="protocol" data-doc-section-target="protocol-identity">Identity</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="protocol" data-doc-section-target="protocol-credential-model">Credential Model</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="protocol" data-doc-section-target="protocol-reputation">Reputation</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="protocol" data-doc-section-target="protocol-signal-sources">Signal Sources</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="protocol" data-doc-section-target="protocol-access">Access</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="protocol" data-doc-section-target="protocol-policy-logic">Policy Logic</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="protocol" data-doc-section-target="protocol-actors">Protocol Actors</button>
+            </div>
+          </section>
+
+          <section class="paper-docs-nav-section" data-doc-nav-section="value">
+            <button
+              class="paper-docs-section-trigger"
+              type="button"
+              data-doc-page-trigger="value"
+              aria-controls="doc-page-value"
+              aria-selected="false"
+            >
+              Value
+            </button>
+            <div class="paper-docs-topic-list">
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="value" data-doc-section-target="value-core">Core Value</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="value" data-doc-section-target="value-usecases">Use Cases</button>
+            </div>
+          </section>
+
+          <section class="paper-docs-nav-section" data-doc-nav-section="token">
+            <button
+              class="paper-docs-section-trigger"
+              type="button"
+              data-doc-page-trigger="token"
+              aria-controls="doc-page-token"
+              aria-selected="false"
+            >
+              Token
+            </button>
+            <div class="paper-docs-topic-list">
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="token" data-doc-section-target="token-utility">$CIV Utility</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="token" data-doc-section-target="token-tokenomics">Tokenomics</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="token" data-doc-section-target="token-allocation">Allocation &amp; Vesting</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="token" data-doc-section-target="token-governance-scope">Governance Scope</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="token" data-doc-section-target="token-governance">Governance Process</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="token" data-doc-section-target="token-services">Network Services</button>
+            </div>
+          </section>
+
+          <section class="paper-docs-nav-section" data-doc-nav-section="summary">
+            <button
+              class="paper-docs-section-trigger"
+              type="button"
+              data-doc-page-trigger="summary"
+              aria-controls="doc-page-summary"
+              aria-selected="false"
+            >
+              Summary
+            </button>
+            <div class="paper-docs-topic-list">
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="summary" data-doc-section-target="summary-takeaways">Key Takeaways</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="summary" data-doc-section-target="summary-roadmap">Roadmap</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="summary" data-doc-section-target="summary-risks">Risks &amp; Limitations</button>
+              <button class="paper-docs-topic-link" type="button" data-doc-page-target="summary" data-doc-section-target="summary-final">Final Note</button>
+            </div>
+          </section>
+        </nav>
+
+        <div class="paper-docs-sidebar-footer">
+          <a class="paper-docs-support" href="index.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7.75C4 6.78 4.78 6 5.75 6h12.5C19.22 6 20 6.78 20 7.75v8.5c0 .97-.78 1.75-1.75 1.75H5.75A1.75 1.75 0 0 1 4 16.25v-8.5Zm1.5 0a.25.25 0 0 0-.25.25v8.5c0 .14.11.25.25.25h12.5c.14 0 .25-.11.25-.25v-8.5a.25.25 0 0 0-.25-.25H5.5Zm2 2h9v1.5h-9v-1.5Zm0 3.25h6.5v1.5H7.5V13Z"></path>
+            </svg>
+            Open Civion Trust Homepage
+          </a>
+        </div>
+      </aside>
+
+      <main class="paper-docs-content">
+        <article class="paper-docs-page">
+          <section class="paper-docs-page-panel is-active" id="doc-page-introduction" data-doc-page-panel="introduction">
+            <div class="paper-docs-article-space"></div>
+            <header class="paper-docs-panel-header">
+              <span class="paper-docs-kicker">Introduction</span>
+              <h1>Civion Trust</h1>
+              <p class="paper-docs-lead">Identity, reputation, and policy-based access for Web3 coordination.</p>
+            </header>
+
+            <section class="paper-docs-section" id="intro-overview">
+              <h2>Overview</h2>
+              <p>
+                Civion Trust is a protocol for environments where a wallet address is not enough to explain
+                participation. It links wallets to verifiable claims, reputation signals, and access logic so
+                that DAOs, communities, institutions, and applications can coordinate with more context and
+                less manual review.
+              </p>
+              <ul class="paper-docs-facts">
+                <li><strong>Project name:</strong> Civion Trust</li>
+                <li><strong>Token ticker:</strong> $CIV</li>
+                <li><strong>One-line introduction:</strong> A protocol for verifiable identity, portable reputation, and policy-based access in Web3.</li>
+              </ul>
+            </section>
+
+            <section class="paper-docs-section" id="intro-positioning">
+              <h2>Positioning</h2>
+              <p>
+                In most crypto systems, ownership is on-chain, but trust context is not. Contribution history
+                sits inside individual products, role logic is managed manually, and compliance checks are
+                repeated across platforms. Civion Trust sits between wallets and applications as a reusable
+                trust layer that can express who a participant is, what they have done, and which conditions
+                they satisfy.
+              </p>
+              <ul>
+                <li>Designed for wallets, organizations, DAOs, institutions, and applications that need more than a balance check.</li>
+                <li>Uses credentials and reputation as reusable trust inputs instead of isolated product data.</li>
+                <li>Supports both open coordination and privacy-aware verification flows.</li>
+              </ul>
+            </section>
+
+            <section class="paper-docs-section" id="intro-thesis">
+              <h2>Protocol Thesis</h2>
+              <p>
+                Web3 coordination improves when participation can be evaluated with more than wallet ownership
+                alone. Civion Trust is built on a simple thesis: identity should be verifiable, reputation
+                should be portable, and access should be policy-based. When those layers are connected, trust
+                becomes easier to reuse across communities and products.
+              </p>
+              <blockquote>
+                Wallets identify accounts. They do not explain trust.
+              </blockquote>
+              <ul>
+                <li>Claims should be issued and verified instead of inferred from profile text.</li>
+                <li>Reputation should travel with contribution history instead of staying inside one app.</li>
+                <li>Access should read policy and context instead of relying on repeated manual review.</li>
+                <li>Compliance should confirm conditions without exposing more information than necessary.</li>
+              </ul>
+            </section>
+
+            <nav class="paper-docs-pager" aria-label="Introduction pager">
+              <a class="paper-docs-pager-card paper-docs-pager-prev" href="index.html">
+                <span class="paper-docs-pager-direction">Previous</span>
+                <strong>Civion Trust Homepage</strong>
+              </a>
+              <a class="paper-docs-pager-card paper-docs-pager-next" href="#protocol" data-doc-page-target="protocol">
+                <span class="paper-docs-pager-direction">Next</span>
+                <strong>Protocol</strong>
+              </a>
+            </nav>
+          </section>
+
+          <section class="paper-docs-page-panel" id="doc-page-protocol" data-doc-page-panel="protocol" hidden>
+            <div class="paper-docs-article-space"></div>
+            <header class="paper-docs-panel-header">
+              <span class="paper-docs-kicker">Protocol</span>
+              <h1>How Civion Trust Works</h1>
+              <p class="paper-docs-lead">A trust layer that turns verifiable context into reusable coordination rules.</p>
+            </header>
+
+            <section class="paper-docs-section" id="protocol-gap">
+              <h2>The Trust Gap</h2>
+              <p>
+                Web3 systems can see accounts and transactions, but they usually cannot read trust context in a
+                reusable way. A contributor may verify in one place, build in another, vote in a third, and
+                still appear as an unknown wallet each time they enter a new environment. The result is a
+                coordination gap: useful context exists, but it is fragmented across products and workflows.
+              </p>
+              <ul>
+                <li><strong>Fragmented identity:</strong> wallets, memberships, affiliations, and verification status are usually stored in separate places.</li>
+                <li><strong>Non-portable reputation:</strong> earned standing often stays inside the product where it was created.</li>
+                <li><strong>Manual permissioning:</strong> teams still spend time assigning roles, approving access, and maintaining eligibility lists.</li>
+                <li><strong>Compliance friction:</strong> verification is repeated across platforms and often asks for more disclosure than the decision requires.</li>
+              </ul>
+            </section>
+
+            <section class="paper-docs-section" id="protocol-architecture">
+              <h2>Architecture</h2>
+              <p>
+                Civion Trust is built as a sequence of trust objects instead of a single profile layer. The
+                protocol starts from an account anchor, adds verifiable claims, interprets observable history,
+                and then applies policy. Each step stays narrow in purpose, which makes the whole stack easier
+                to reuse across different coordination environments.
+              </p>
+              <ol class="paper-docs-plain-list">
+                <li><strong>Account anchor:</strong> a wallet represents the participant or operating entity entering the system.</li>
+                <li><strong>Credential layer:</strong> verifiable credentials attest membership, affiliation, qualifications, or compliance-related conditions.</li>
+                <li><strong>Reputation layer:</strong> models interpret governance activity, contribution history, and other observable records into trust signals.</li>
+                <li><strong>Policy layer:</strong> access rules consume those claims and signals to determine roles, permissions, eligibility, and coordinated actions.</li>
+              </ol>
+              <p class="paper-docs-soft">Protocol flow: wallet anchor -> verifiable claim -> reputation signal -> policy evaluation -> coordinated action.</p>
+            </section>
+
+            <section class="paper-docs-section" id="protocol-identity">
+              <h2>Verifiable Identity</h2>
+              <p>
+                In Civion Trust, identity is expressed through claims rather than assumptions. A claim may
+                describe organization membership, contributor standing, an affiliation, or a compliance-related
+                status. Once that claim is issued as a verifiable credential, it becomes a reusable input that
+                other systems can read without having to recreate the same record from scratch.
+              </p>
+              <ul>
+                <li>Maps wallets to reusable credentials instead of isolated profile fields.</li>
+                <li>Supports both individual and organizational participation contexts.</li>
+                <li>Allows downstream systems to read claims as inputs for roles, access, and governance logic.</li>
+              </ul>
+            </section>
+
+            <section class="paper-docs-section" id="protocol-credential-model">
+              <h2>Credential Model</h2>
+              <p>
+                The protocol should treat credentials as structured trust objects rather than loose profile
+                labels. A reusable credential model makes it easier for different applications to interpret
+                claims consistently and gives issuers a clearer standard for what they are attesting.
+              </p>
+              <ul>
+                <li><strong>Subject reference:</strong> each credential should point to the wallet, organization, or operating entity it describes.</li>
+                <li><strong>Issuer reference:</strong> credentials should identify the attester or issuing system responsible for the claim.</li>
+                <li><strong>Claim type:</strong> the schema should distinguish between memberships, affiliations, qualifications, contributor roles, and compliance-related conditions.</li>
+                <li><strong>Status fields:</strong> issuance time, expiry, revocation status, and versioning should be readable as part of the credential lifecycle.</li>
+                <li><strong>Disclosure boundary:</strong> credentials should support minimum-necessary disclosure so systems can verify conditions without always reading raw underlying data.</li>
+              </ul>
+              <p class="paper-docs-soft">
+                A strong credential layer does not need to expose everything on-chain. It needs to make claims verifiable, revocable, and reusable.
+              </p>
+            </section>
+
+            <section class="paper-docs-section" id="protocol-reputation">
+              <h2>On-Chain Reputation</h2>
+              <p>
+                Reputation in Civion Trust is derived from observable participation, not from a fixed social
+                label. Governance activity, contribution history, usage records, and other verifiable events can
+                be interpreted as trust inputs. The protocol is not built around one universal score. Different
+                applications should be able to weigh signals differently depending on what credible
+                participation means in their environment.
+              </p>
+              <ul>
+                <li>Uses configurable models instead of forcing one global ranking.</li>
+                <li>Makes reputation signals portable across products that choose to recognize them.</li>
+                <li>Helps applications and communities identify credible participants with less manual curation.</li>
+              </ul>
+            </section>
+
+            <section class="paper-docs-section" id="protocol-signal-sources">
+              <h2>Signal Sources</h2>
+              <p>
+                Reputation quality depends on the quality of the signals that feed it. Civion Trust should rely
+                on interpretable sources that can be inspected, challenged, and updated over time rather than on
+                opaque scoring rules with unclear provenance.
+              </p>
+              <ul>
+                <li><strong>Governance participation:</strong> proposal authorship, voting activity, delegated responsibilities, and sustained involvement in collective decisions.</li>
+                <li><strong>Contribution records:</strong> delivery history, completed tasks, ecosystem work, and other verifiable signs of useful participation.</li>
+                <li><strong>Credential-backed context:</strong> memberships, verified roles, affiliations, and issued standing that help explain where a participant has operated.</li>
+                <li><strong>Service behavior:</strong> reliability, consistency, and protocol-relevant activity where applications or operators contribute to the trust layer.</li>
+                <li><strong>Decay and adjustment:</strong> stale activity, revoked credentials, or superseded context should not carry the same weight forever.</li>
+              </ul>
+              <p class="paper-docs-soft">
+                Signal selection is a governance question as much as a technical one. The goal is not maximum data volume, but useful and explainable trust inputs.
+              </p>
+            </section>
+
+            <section class="paper-docs-section" id="protocol-access">
+              <h2>Access and Compliant Entry</h2>
+              <p>
+                Access is where credentials and reputation become operational. Once trust inputs exist, they can
+                be evaluated through policy to determine who may join, vote, claim a role, or enter a gated
+                workflow. For institution-facing environments, the same structure can support compliant entry by
+                confirming required conditions without disclosing unnecessary raw data.
+              </p>
+              <blockquote>Policy should decide access from trust inputs, not from repeated manual review.</blockquote>
+              <ul>
+                <li>DAO permissions can reflect verified standing and participation quality.</li>
+                <li>Community roles can depend on earned signals instead of manual assignment alone.</li>
+                <li>Applications can gate actions through consistent policy checks.</li>
+                <li>Institutions can confirm required conditions while limiting raw data exposure.</li>
+              </ul>
+            </section>
+
+            <section class="paper-docs-section" id="protocol-policy-logic">
+              <h2>Policy Logic</h2>
+              <p>
+                The policy layer is where trust inputs turn into explicit decisions. In practice, a policy
+                engine should evaluate credentials, reputation signals, and contextual rules in a deterministic
+                and explainable way. The output may be a role assignment, permission decision, governance
+                eligibility result, or a compliance-ready access outcome.
+              </p>
+              <ul>
+                <li><strong>Credential-based rule:</strong> grant a verified membership role only when an accepted issuer has attested the required affiliation.</li>
+                <li><strong>Reputation-based rule:</strong> allow governance participation only after a minimum level of sustained contribution or prior standing has been reached.</li>
+                <li><strong>Combined rule:</strong> permit a sensitive action only when both a valid credential and a threshold level of reputation are present.</li>
+                <li><strong>Privacy-aware rule:</strong> confirm that a compliance condition is satisfied without exposing the full underlying record to every consuming application.</li>
+                <li><strong>Revocation-aware rule:</strong> remove or downgrade access when an input credential expires, is revoked, or falls outside the accepted policy window.</li>
+              </ul>
+              <p class="paper-docs-soft">
+                Good policy logic should be readable enough to audit and narrow enough to explain why an access decision was made.
+              </p>
+            </section>
+
+            <section class="paper-docs-section" id="protocol-actors">
+              <h2>Protocol Actors</h2>
+              <p>
+                Civion Trust depends on a small set of actors with different responsibilities. The protocol is
+                most useful when those roles remain distinct: some actors issue trust context, some accumulate
+                it through participation, and others consume it through policy and coordination logic.
+              </p>
+              <ul>
+                <li><strong>Participants:</strong> wallets, contributors, organizations, and entities that receive credentials, build reputation, and interact with gated systems.</li>
+                <li><strong>Issuers and attesters:</strong> actors that verify conditions and issue credentials such as memberships, affiliations, or compliance-related claims.</li>
+                <li><strong>Communities and applications:</strong> systems that read credentials, reputation signals, and policy outcomes to manage roles, governance, and access.</li>
+                <li><strong>Governance participants:</strong> stakeholders that use $CIV to influence protocol standards, parameter changes, and model evolution.</li>
+                <li><strong>Validators or service operators:</strong> actors that support reliability where verification, coordination, or protocol services require ongoing operation.</li>
+              </ul>
+            </section>
+
+            <nav class="paper-docs-pager" aria-label="Protocol pager">
+              <a class="paper-docs-pager-card paper-docs-pager-prev" href="#introduction" data-doc-page-target="introduction">
+                <span class="paper-docs-pager-direction">Previous</span>
+                <strong>Introduction</strong>
+              </a>
+              <a class="paper-docs-pager-card paper-docs-pager-next" href="#value" data-doc-page-target="value">
+                <span class="paper-docs-pager-direction">Next</span>
+                <strong>Value</strong>
+              </a>
+            </nav>
+          </section>
+
+          <section class="paper-docs-page-panel" id="doc-page-value" data-doc-page-panel="value" hidden>
+            <div class="paper-docs-article-space"></div>
+            <header class="paper-docs-panel-header">
+              <span class="paper-docs-kicker">Value</span>
+              <h1>What the Protocol Makes Possible</h1>
+              <p class="paper-docs-lead">Why reusable trust context matters for governance, membership, and verification.</p>
+            </header>
+
+            <section class="paper-docs-section" id="value-core">
+              <h2>Core Value</h2>
+              <p>
+                Civion Trust creates value by reducing the amount of trust work that every product, DAO, or
+                institution has to rebuild for itself. Instead of managing identity checks, reputation signals,
+                and access rules as separate systems, they can be connected through one reusable layer. That
+                makes participant evaluation more consistent and coordination less dependent on manual review.
+              </p>
+              <ul>
+                <li><strong>Less duplicated trust work:</strong> identity records, participation history, and access logic do not need to be recreated in every environment.</li>
+                <li><strong>Better participant recognition:</strong> communities can make clearer decisions about who should vote, contribute, or access certain roles.</li>
+                <li><strong>Portable trust memory:</strong> contribution history can remain useful after a participant moves across products or ecosystems.</li>
+                <li><strong>More practical verification:</strong> required checks can be completed with narrower disclosure and cleaner policy logic.</li>
+              </ul>
+            </section>
+
+            <section class="paper-docs-section" id="value-usecases">
+              <h2>Use Cases</h2>
+              <p>
+                Civion Trust is not a single end-user product. It is infrastructure for environments where
+                participation needs to be evaluated with more context than a wallet balance can provide. The
+                same trust layer can support different coordination patterns depending on who is using it.
+              </p>
+              <ul>
+                <li><strong>DAOs:</strong> use contributor history and verified standing to structure voting eligibility, role tiers, and internal coordination.</li>
+                <li><strong>Communities:</strong> make membership, progression, and gated access feel earned instead of manually assigned.</li>
+                <li><strong>Institutions:</strong> support verification-ready onboarding and restricted participation flows with stronger privacy boundaries.</li>
+                <li><strong>Applications:</strong> read credentials, reputation signals, and policy outcomes without building a separate trust layer from scratch.</li>
+              </ul>
+            </section>
+
+            <nav class="paper-docs-pager" aria-label="Value pager">
+              <a class="paper-docs-pager-card paper-docs-pager-prev" href="#protocol" data-doc-page-target="protocol">
+                <span class="paper-docs-pager-direction">Previous</span>
+                <strong>Protocol</strong>
+              </a>
+              <a class="paper-docs-pager-card paper-docs-pager-next" href="#token" data-doc-page-target="token">
+                <span class="paper-docs-pager-direction">Next</span>
+                <strong>Token</strong>
+              </a>
+            </nav>
+          </section>
+
+          <section class="paper-docs-page-panel" id="doc-page-token" data-doc-page-panel="token" hidden>
+            <div class="paper-docs-article-space"></div>
+            <header class="paper-docs-panel-header">
+              <span class="paper-docs-kicker">Token</span>
+              <h1>$CIV Utility</h1>
+              <p class="paper-docs-lead">Why the protocol uses a coordination asset and what that asset is meant to support.</p>
+            </header>
+
+            <section class="paper-docs-section" id="token-utility">
+              <h2>$CIV Utility</h2>
+              <p>
+                $CIV is intended to coordinate the economic and governance activity around Civion Trust. The
+                protocol connects credential issuance, reputation interpretation, access logic, and service
+                delivery. A shared network asset gives those activities a common way to align incentives, pay
+                for usage, and participate in governance. In that sense, $CIV is meant to support the operation
+                of the trust layer rather than exist as a mere branding token.
+              </p>
+              <div class="paper-docs-onchain-card" aria-label="On-chain reference">
+                <span class="paper-docs-kicker">On-chain reference</span>
+                <ul class="paper-docs-onchain-list">
+                  <li><strong>Network:</strong> BNB Smart Chain</li>
+                  <li>
+                    <strong>Contract:</strong>
+                    <code class="paper-docs-inline-code">0x411941B0D2D7C096673f853393B7Ad9739B2e7bf</code>
+                  </li>
+                  <li>
+                    <strong>Explorer:</strong>
+                    <a
+                      href="https://bscscan.com/address/0x411941B0D2D7C096673f853393B7Ad9739B2e7bf#code"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >View on BscScan</a>
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <section class="paper-docs-section" id="token-tokenomics">
+              <h2>Tokenomics</h2>
+              <p>
+                $CIV should be structured to keep the protocol operating over time, not to optimize for a short
+                launch window. In practice that means funding ecosystem work, rewarding useful participation,
+                and keeping contributors aligned with a longer build cycle. Exact issuance and allocation
+                parameters may still change, but the token only makes sense if it stays tied to actual network use.
+              </p>
+              <ul class="paper-docs-facts">
+                <li><strong>Working max supply:</strong> 1,000,000,000 $CIV</li>
+                <li><strong>Working supply model:</strong> fixed-cap supply with governance-controlled treasury deployment</li>
+                <li><strong>Working initial circulating target:</strong> 10% to 14% of total supply</li>
+              </ul>
+              <ul>
+                <li><strong>Protocol and ecosystem treasury:</strong> support grants, integrations, operations, and long-horizon ecosystem development.</li>
+                <li><strong>Network incentives:</strong> reward verification, coordination, reputation contribution, and other behaviors that strengthen the trust layer.</li>
+                <li><strong>Core contributors and builders:</strong> align long-term development with vesting and release schedules that favor sustained execution.</li>
+                <li><strong>Liquidity and market access:</strong> ensure the token can be used practically across the network instead of remaining purely symbolic.</li>
+              </ul>
+              <p class="paper-docs-soft">
+                Draft planning values only: these figures should be replaced once the final token design is approved.
+              </p>
+            </section>
+
+            <section class="paper-docs-section" id="token-allocation">
+              <h2>Allocation &amp; Vesting</h2>
+              <p>
+                Final percentages and unlock schedules are still draft values in this version. Even so, the
+                allocation logic should follow protocol needs rather than short-term market signaling. The
+                distribution should leave room for ecosystem growth, keep builders aligned over time, and avoid
+                a release curve that pushes too much supply out too early.
+              </p>
+              <ul>
+                <li><strong>Treasury and ecosystem allocation:</strong> 30% of total supply, released through governance-controlled deployment over 48 months.</li>
+                <li><strong>Community and network incentives:</strong> 25% of total supply, emitted gradually over 60 months based on participation and ecosystem growth.</li>
+                <li><strong>Core contributors and builders:</strong> 20% of total supply, subject to a 12-month cliff followed by 36-month linear vesting.</li>
+                <li><strong>Strategic backers and ecosystem partners:</strong> 15% of total supply, subject to a 6-month cliff followed by 24-month linear vesting.</li>
+                <li><strong>Liquidity and market access allocation:</strong> 10% of total supply, with 40% available at TGE and the remaining 60% unlocked over 12 months.</li>
+              </ul>
+              <p class="paper-docs-soft">
+                Draft planning values only: these allocation percentages and vesting schedules are temporary placeholders until final numbers are approved.
+              </p>
+            </section>
+
+            <section class="paper-docs-section" id="token-governance-scope">
+              <h2>Governance Scope</h2>
+              <p>
+                Governance should focus on the parts of the protocol that need collective coordination, not on
+                day-to-day discretionary decisions that belong to issuers, applications, or private compliance
+                workflows. A narrower governance scope makes the system easier to reason about and less likely to
+                drift into noisy token-holder micromanagement.
+              </p>
+              <ul>
+                <li><strong>Appropriate governance scope:</strong> standards, accepted credential types, model parameters, incentive frameworks, treasury use, and protocol upgrade direction.</li>
+                <li><strong>Limited governance scope:</strong> individual user disputes, raw private data handling, and issuer-side verification details that should remain outside broad token voting.</li>
+                <li><strong>Model governance:</strong> communities may influence how trust signals are weighted without rewriting the entire protocol each time a parameter changes.</li>
+                <li><strong>Treasury governance:</strong> ecosystem funding, integration support, and long-range protocol priorities should be visible and reviewable.</li>
+              </ul>
+            </section>
+
+            <section class="paper-docs-section" id="token-governance">
+              <h2>Governance Process</h2>
+              <p>
+                Civion Trust will not stay fixed. Credential standards, model parameters, and incentive rules
+                will need to change over time. $CIV is intended to give the network a way to make those changes
+                without leaving every major decision to a central operator.
+              </p>
+              <ol class="paper-docs-plain-list">
+                <li><strong>Drafting:</strong> a proposal is introduced with rationale, scope, expected outcomes, and any dependencies on credential, reputation, access, or token systems.</li>
+                <li><strong>Review:</strong> stakeholders evaluate implementation risk, ecosystem impact, and whether the change fits the protocol thesis.</li>
+                <li><strong>Revision:</strong> proposal authors respond to feedback, clarify assumptions, and narrow or expand the proposal where required.</li>
+                <li><strong>Decision:</strong> governance participants use $CIV to express support, opposition, or the need for further revision.</li>
+                <li><strong>Execution and monitoring:</strong> approved changes move into implementation, followed by observation and later adjustment if the result does not match the intended outcome.</li>
+              </ol>
+              <ul class="paper-docs-facts">
+                <li><strong>Working proposal threshold:</strong> 1.0% of circulating or delegated $CIV</li>
+                <li><strong>Working discussion period:</strong> 7 days</li>
+                <li><strong>Working voting period:</strong> 5 days</li>
+                <li><strong>Working quorum:</strong> 8% of circulating supply</li>
+                <li><strong>Working approval threshold:</strong> 60% of votes cast</li>
+                <li><strong>Working execution delay:</strong> 48 hours</li>
+              </ul>
+              <p class="paper-docs-soft">
+                Draft planning values only: governance thresholds and timing are provisional and should be updated once the final governance model is confirmed.
+              </p>
+            </section>
+
+            <section class="paper-docs-section" id="token-services">
+              <h2>Network Services and Validators</h2>
+              <p>
+                Where Civion Trust relies on coordination services, verification flows, or network-level
+                reliability, $CIV can also function as the operating asset for payments and incentives. That
+                includes service usage within the ecosystem and rewards for actors that help keep trust
+                infrastructure available and dependable.
+              </p>
+              <ul>
+                <li><strong>Ecosystem service payments:</strong> pay for integrations, trust checks, and protocol-level functionality.</li>
+                <li><strong>Validator incentives:</strong> reward reliability where validation, coordination, or service roles exist.</li>
+              </ul>
+              <blockquote>$CIV should make the trust layer more operable, not more speculative.</blockquote>
+            </section>
+
+            <nav class="paper-docs-pager" aria-label="Token pager">
+              <a class="paper-docs-pager-card paper-docs-pager-prev" href="#value" data-doc-page-target="value">
+                <span class="paper-docs-pager-direction">Previous</span>
+                <strong>Value</strong>
+              </a>
+              <a class="paper-docs-pager-card paper-docs-pager-next" href="#summary" data-doc-page-target="summary">
+                <span class="paper-docs-pager-direction">Next</span>
+                <strong>Summary</strong>
+              </a>
+            </nav>
+          </section>
+
+          <section class="paper-docs-page-panel" id="doc-page-summary" data-doc-page-panel="summary" hidden>
+            <div class="paper-docs-article-space"></div>
+            <header class="paper-docs-panel-header">
+              <span class="paper-docs-kicker">Summary</span>
+              <h1>Closing Takeaways</h1>
+              <p class="paper-docs-lead">A concise summary of what Civion Trust is building and why it matters.</p>
+            </header>
+
+            <section class="paper-docs-section paper-docs-references" id="summary-takeaways">
+              <h2>Key Takeaways</h2>
+              <ul>
+                <li>Civion Trust is built for coordination environments where wallet ownership alone is too thin to guide meaningful decisions.</li>
+                <li>The protocol connects verifiable claims, reputation signals, and policy-based access into one reusable trust layer.</li>
+                <li>Its purpose is to make governance, membership, verification, and application-level gating more consistent and less manual.</li>
+                <li>$CIV exists to help govern and operate the network around that trust layer.</li>
+              </ul>
+            </section>
+
+            <section class="paper-docs-section" id="summary-roadmap">
+              <h2>Roadmap</h2>
+              <p>
+                Civion Trust is best understood as a layered buildout rather than a single launch event. The
+                protocol becomes more useful as identity, reputation, access logic, and token coordination are
+                introduced in an ordered sequence.
+              </p>
+              <ol class="paper-docs-plain-list">
+                <li><strong>Phase I:</strong> define the protocol thesis, document the trust model, and establish the wallet-to-credential foundation.</li>
+                <li><strong>Phase II:</strong> develop reusable reputation signals and policy-based access logic for DAO, community, and application flows.</li>
+                <li><strong>Phase III:</strong> expand ecosystem integrations, governance participation, and service infrastructure around the trust layer.</li>
+                <li><strong>Phase IV:</strong> mature token coordination, network incentives, and validator or service roles where deeper protocol operation is required.</li>
+              </ol>
+              <p class="paper-docs-soft">
+                The roadmap should remain iterative. Each phase becomes more credible only when the previous layer is already usable.
+              </p>
+            </section>
+
+            <section class="paper-docs-section" id="summary-risks">
+              <h2>Risks and Limitations</h2>
+              <p>
+                Civion Trust can make trust context more reusable, but it does not remove the tradeoffs involved
+                in identity, reputation, or governance. The system remains sensitive to credential quality,
+                model design, adoption, and the way privacy requirements are implemented in practice.
+              </p>
+              <ul>
+                <li><strong>Issuer quality risk:</strong> credentials are only as useful as the issuers and attesters behind them.</li>
+                <li><strong>Reputation model risk:</strong> poorly designed weighting or weak inputs can misrepresent meaningful contribution.</li>
+                <li><strong>Adoption risk:</strong> portable trust only matters when applications and communities choose to recognize it.</li>
+                <li><strong>Privacy and compliance risk:</strong> selective disclosure and verification flows still need careful implementation across jurisdictions and use cases.</li>
+                <li><strong>Governance risk:</strong> low participation or misaligned incentives can weaken protocol decision-making over time.</li>
+              </ul>
+            </section>
+
+            <section class="paper-docs-section" id="summary-final">
+              <h2>Final Note</h2>
+              <p>
+                Civion Trust is not trying to replace wallets, erase pseudonymity, or force every ecosystem
+                into one reputation model. Its role is narrower and more practical: to add reusable trust
+                context on top of existing Web3 participation so that claims, history, and policy can work
+                together in a more reliable way.
+              </p>
+              <p class="paper-docs-soft">
+                Continue with:
+              <a href="index.html">Homepage</a>
+                or
+                <a href="#introduction" data-doc-page-target="introduction">return to the introduction</a>.
+              </p>
+            </section>
+
+            <nav class="paper-docs-pager" aria-label="Summary pager">
+              <a class="paper-docs-pager-card paper-docs-pager-prev" href="#token" data-doc-page-target="token">
+                <span class="paper-docs-pager-direction">Previous</span>
+                <strong>Token</strong>
+              </a>
+              <a class="paper-docs-pager-card paper-docs-pager-next" href="#introduction" data-doc-page-target="introduction">
+                <span class="paper-docs-pager-direction">Next</span>
+                <strong>Return to Introduction</strong>
+              </a>
+            </nav>
+          </section>
+        </article>
+      </main>
+
+      <aside class="paper-docs-right-rail" aria-hidden="true"></aside>
+    </div>
+
+    <a class="paper-docs-to-top" href="#top" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 7.94 6.47 13.47 5.41 12.41 12 5.82l6.59 6.59-1.06 1.06L12 7.94Z"></path>
+      </svg>
+    </a>
+  </div>
+
+  <script src="site.js"></script>
+</body>
+</html>
